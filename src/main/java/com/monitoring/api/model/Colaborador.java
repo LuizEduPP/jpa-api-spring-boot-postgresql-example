@@ -1,15 +1,19 @@
 package com.monitoring.api.model;
 
+import java.util.Objects;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.Id;
 
 @Entity
-@Table(name = "COLABORADOR")
 public class Colaborador {
 
+  @Id
   private String cpf;
-
   private String nome;
+
+  public Colaborador() {
+  }
 
   public String getCpf() {
     return cpf;
@@ -27,4 +31,18 @@ public class Colaborador {
     this.nome = nome;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+    Colaborador that = (Colaborador) o;
+    return Objects.equals(cpf, that.cpf);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(cpf);
+  }
 }

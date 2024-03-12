@@ -1,20 +1,39 @@
 package com.monitoring.api.model;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "MARCACAO")
 public class Marcacao {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "CODIGO")
   private Long codigo;
 
-  private MarcacaoTipo tipoMarcacao;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "COD_TIPO_MARCACAO", nullable = false)
+  private MarcacaoTipo marcacaoTipo;
 
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "CPF_COLABORADOR", referencedColumnName = "CPF")
   private Colaborador colaborador;
 
-  private LocalDateTime dataHoraMarcacao;
+  @Column(name = "DATA_HORA_MARCACAO", nullable = false)
+  private OffsetDateTime dataHoraMarcacao;
+
+  @Column(name = "TIPO_MARCACAO", nullable = false)
+  private String tipoMarcacao;
 
   public Long getCodigo() {
     return codigo;
@@ -24,12 +43,12 @@ public class Marcacao {
     this.codigo = codigo;
   }
 
-  public MarcacaoTipo getTipoMarcacao() {
-    return tipoMarcacao;
+  public MarcacaoTipo getMarcacaoTipo() {
+    return marcacaoTipo;
   }
 
-  public void setTipoMarcacao(MarcacaoTipo tipoMarcacao) {
-    this.tipoMarcacao = tipoMarcacao;
+  public void setMarcacaoTipo(MarcacaoTipo marcacaoTipo) {
+    this.marcacaoTipo = marcacaoTipo;
   }
 
   public Colaborador getColaborador() {
@@ -40,12 +59,19 @@ public class Marcacao {
     this.colaborador = colaborador;
   }
 
-  public LocalDateTime getDataHoraMarcacao() {
+  public OffsetDateTime getDataHoraMarcacao() {
     return dataHoraMarcacao;
   }
 
-  public void setDataHoraMarcacao(LocalDateTime dataHoraMarcacao) {
+  public void setDataHoraMarcacao(OffsetDateTime dataHoraMarcacao) {
     this.dataHoraMarcacao = dataHoraMarcacao;
   }
 
+  public String getTipoMarcacao() {
+    return tipoMarcacao;
+  }
+
+  public void setTipoMarcacao(String tipoMarcacao) {
+    this.tipoMarcacao = tipoMarcacao;
+  }
 }

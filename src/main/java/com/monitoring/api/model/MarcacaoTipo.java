@@ -1,17 +1,20 @@
 package com.monitoring.api.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "MARCACAO_TIPO")
 public class MarcacaoTipo {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long codigo;
-
   private String nome;
-
-  private Long tempoRecomendadoEmMinutos;
+  private Long tempoRecomendadoMinutos;
 
   public Long getCodigo() {
     return codigo;
@@ -29,12 +32,11 @@ public class MarcacaoTipo {
     this.nome = nome;
   }
 
-  public Long getTempoRecomendadoEmMinutos() {
-    return tempoRecomendadoEmMinutos;
+  public Long getTempoRecomendadoMinutos() {
+    return tempoRecomendadoMinutos;
   }
 
-  public void setTempoRecomendadoEmMinutos(Long tempoRecomendadoEmMinutos) {
-    this.tempoRecomendadoEmMinutos = tempoRecomendadoEmMinutos;
+  public void setTempoRecomendadoMinutos(Long tempoRecomendadoMinutos) {
+    this.tempoRecomendadoMinutos = tempoRecomendadoMinutos;
   }
-
 }
