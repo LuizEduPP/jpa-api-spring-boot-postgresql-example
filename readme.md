@@ -69,3 +69,5 @@ Content-Type: application/json
   "dataInicial": "2019-01-01T00:00:00Z",
   "dataFinal": "2022-02-01T23:59:59Z"
 }
+
+
